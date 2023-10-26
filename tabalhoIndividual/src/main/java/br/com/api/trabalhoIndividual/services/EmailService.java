@@ -18,5 +18,11 @@ public class EmailService {
 		// TODO Auto-generated method stub
 		
 	}
+	
+
+	public void envioEmailPromo() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
