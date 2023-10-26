@@ -7,6 +7,8 @@ import br.com.api.trabalhoIndividual.dto.CarroRespostaDTO;
 import br.com.api.trabalhoIndividual.entities.Carro;
 
 public class CarroService {
+	
+	public Carro parseDeCarro(ProdutoDTO objeto) {
 
 	public Integer getCount() {
 		// TODO Auto-generated method stub

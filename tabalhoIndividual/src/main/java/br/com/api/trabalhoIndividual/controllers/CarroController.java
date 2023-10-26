@@ -59,10 +59,9 @@ public class CarroController {
 		return carroService.atualizar(id, objetoProduto);
 	}
 
-	@GetMapping("/promocao")
+	/*@GetMapping("/promocao")
 	public List<CarroRespostaDTO> promocao() {
 		emailService.envioEmailPromo();
 		return carroService.promocao();
-	}
-
+	}*/
 }
