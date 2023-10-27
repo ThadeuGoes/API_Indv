@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.api.trabalhoIndividual.dto.CarroRequisicaoDTO;
 import br.com.api.trabalhoIndividual.dto.PessoaRequisicaoDTO;
 import br.com.api.trabalhoIndividual.dto.PessoaRespostaDTO;
 import br.com.api.trabalhoIndividual.entities.Pessoa;
@@ -51,9 +50,9 @@ public class PessoaController {
 	@PostMapping("/salvar")
 	public void salvar(@RequestBody PessoaRequisicaoDTO objetoProduto, @RequestParam String nomeDaCategoria,
 			@RequestParam String email) {
-		pessoaService.salvar(objetoProduto, nomeDaCategoria, email);
+		pessoaService.salvar(objetoProduto, email);
 	}
-	
+
 	@DeleteMapping("/deletarLogico/{id}")
 	public void deletarLogico(@PathVariable Integer id) {
 		emailService.envioEmailDelete(pessoaRepository.findById(id).get());

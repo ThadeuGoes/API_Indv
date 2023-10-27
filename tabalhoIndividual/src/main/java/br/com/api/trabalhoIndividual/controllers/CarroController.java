@@ -34,9 +34,8 @@ public class CarroController {
 	}
 
 	@PostMapping("/salvar")
-	public void salvar(@RequestBody CarroRequisicaoDTO objetoProduto, @RequestParam String nomeDaCategoria,
-			@RequestParam String email) {
-		carroService.salvar(objetoProduto, nomeDaCategoria, email);
+	public void salvar(@RequestBody CarroRequisicaoDTO objetoProduto, @RequestParam String email) {
+		carroService.salvar(objetoProduto, email);
 	}
 
 	@GetMapping("/{id}")
@@ -59,9 +58,8 @@ public class CarroController {
 		return carroService.atualizar(id, objetoProduto);
 	}
 
-	/*@GetMapping("/promocao")
-	public List<CarroRespostaDTO> promocao() {
-		emailService.envioEmailPromo();
-		return carroService.promocao();
-	}*/
+	/*
+	 * @GetMapping("/promocao") public List<CarroRespostaDTO> promocao() {
+	 * emailService.envioEmailPromo(); return carroService.promocao(); }
+	 */
 }

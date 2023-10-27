@@ -114,7 +114,7 @@ public class PessoaService {
 		}
 	}
 
-	public void salvar(PessoaRequisicaoDTO objeto) {
+	public void salvar(PessoaRequisicaoDTO objeto, String email) {
 		pessoaRepository.save(parseDePessoaRequisicao(objeto));
 
 	}
