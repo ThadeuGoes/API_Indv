@@ -12,15 +12,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "caro")
+@Table(name = "carro")
 public class Carro {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // informa q é pk
 	private Integer id;
-	@NotNull(message = "Nome não pode ser nulo.")
-	@NotBlank(message = "Nome não pode ser vazio.")
-	@Size(max = 50)
 	private String nome;
 	private LocalDate dataFabricacao;
 	private Boolean ativo;

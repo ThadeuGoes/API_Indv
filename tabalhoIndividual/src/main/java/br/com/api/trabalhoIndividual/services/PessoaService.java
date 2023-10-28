@@ -1,7 +1,9 @@
 package br.com.api.trabalhoIndividual.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Service;
 import br.com.api.trabalhoIndividual.dto.PessoaRequisicaoDTO;
 import br.com.api.trabalhoIndividual.dto.PessoaRespostaDTO;
 import br.com.api.trabalhoIndividual.entities.Pessoa;
+import br.com.api.trabalhoIndividual.entities.Role;
+import br.com.api.trabalhoIndividual.enums.TipoRoleEnum;
 import br.com.api.trabalhoIndividual.repositories.PessoaRepository;
 
 @Service
@@ -22,11 +26,31 @@ public class PessoaService {
 	public Pessoa parseDePessoaRequisicao(PessoaRequisicaoDTO obj) {
 		Pessoa pessoaNova = new Pessoa();
 
+		pessoaNova.setNome(obj.getNome());
+		pessoaNova.setEmail(obj.getEmail());
+		pessoaNova.setCpf(obj.getCpf());
+		pessoaNova.setPassword(obj.getPassword());
+		pessoaNova.setCarros(obj.getCarros());
+
+		Set<Role> roles = new HashSet<>();
+		for (String role : obj.getRoles()) {
+			TipoRoleEnum rolem = TipoRoleEnum.valueOf(role);
+			Role rolen = new Role(rolem);
+			roles.add(rolen);
+		}
+
+		pessoaNova.setRoles(roles);
+
 		return pessoaNova;
 	}
 
 	public PessoaRespostaDTO parseDePessoaResposta(Pessoa obj) {
 		PessoaRespostaDTO pessoaNova = new PessoaRespostaDTO();
+
+		pessoaNova.setNome(obj.getNome());
+		pessoaNova.setEmail(obj.getEmail());
+		pessoaNova.setAtivo(obj.getAtivo());
+		pessoaNova.setCarros(obj.getCarros());
 
 		return pessoaNova;
 	}
@@ -114,8 +138,4 @@ public class PessoaService {
 		}
 	}
 
-	public void salvar(PessoaRequisicaoDTO objeto, String email) {
-		pessoaRepository.save(parseDePessoaRequisicao(objeto));
-
-	}
 }

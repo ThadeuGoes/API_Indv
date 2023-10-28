@@ -2,7 +2,8 @@ package br.com.api.trabalhoIndividual.enums;
 
 public enum TipoRoleEnum {
 
-	ROLE_COMPRADOR("COMPRADOR"), ROLE_VENDEDOR("VENDEDOR");
+	ROLE_LOCATARIO("LOCATARIO"), 
+	ROLE_FUNCIONARIO("FUNCIONARIO");
 
 	private String tipo;
 

@@ -44,10 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da
 																	// API
-		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()/* permmiAll */ .antMatchers()
-				.permitAll()/* comprador */ .antMatchers().permitAll()// .hasRole("COMPRADOR")
-				/* vendedor */ .antMatchers().permitAll()// .hasRole("VENDEDOR")
-				/* ambos */ .antMatchers().permitAll()// .hasAnyRole("COMPRADOR","VENDEDOR")
+		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()
+/*permitAll*/	.antMatchers("/roles","/pessoa/login","/pessoa/registro","/carro/count","/carro/listar").permitAll()
+/*locatario*/	.antMatchers("/endereco/reativarEndereco/{id}","/endereco/atualizar/{id}","/endereco/deletarLogico/{id}","/endereco/salvar").hasRole("LOCATARIO")
+/*funcionario*/	.antMatchers("/pessoa/deletarLogico/{id}","/pessoa/listar","/pessoa/{id}","/pessoa/count","/endereco/listar","/endereco/{id}","/endereco/count","/carro/deletar/{id}","/carro/atualizar/{id}","/carro/salvar").hasRole("FUNCIONARIO")
+/*ambos*/		.antMatchers("/pessoa/reativar/{id}","/pessoa/trocaSenha/{id}","/pessoa/atualizar/{id}","/carro/{id}").hasAnyRole("LOCATARIO","FUNCIONARIO")
+				
 				.and().userDetailsService(uds).exceptionHandling()
 				.authenticationEntryPoint((request, response, authException) -> response
 						.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"))

@@ -1,6 +1,7 @@
 package br.com.api.trabalhoIndividual.entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -41,8 +44,14 @@ public class Pessoa {
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	@OneToMany
+	@JoinColumn(name = "usuario_id")
+	private List<Endereco> endereco;
+	@OneToMany
 	@JoinColumn(name = "pessoa_id")
 	private List<Carro> carros;
+	@ManyToMany
+	@JoinTable(name = "pessoa_role", joinColumns = @JoinColumn(name = "pessoa_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
 
 	public Pessoa() {
 		super();
@@ -52,7 +61,7 @@ public class Pessoa {
 			@NotNull(message = "Nome não pode ser nulo.") @NotBlank(message = "Nome não pode ser vazio.") @Size(max = 50) String nome,
 			@NotNull(message = "EMAIL não pode ser nulo.") @NotBlank(message = "EMAIL não pode ser vazio.") @Email String email,
 			@NotNull(message = "CPF não pode ser nulo.") @NotBlank(message = "CPF não pode ser vazio.") @Size(max = 11) String cpf,
-			Boolean ativo, String password, List<Carro> carros) {
+			Boolean ativo, String password, List<Endereco> endereco, List<Carro> carros, Set<Role> roles) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -60,7 +69,9 @@ public class Pessoa {
 		this.cpf = cpf;
 		this.ativo = ativo;
 		this.password = password;
+		this.endereco = endereco;
 		this.carros = carros;
+		this.roles = roles;
 	}
 
 	public Integer getId() {
@@ -111,6 +122,14 @@ public class Pessoa {
 		this.password = password;
 	}
 
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
+
 	public List<Carro> getCarros() {
 		return carros;
 	}
@@ -119,10 +138,12 @@ public class Pessoa {
 		this.carros = carros;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", ativo=" + ativo
-				+ ", password=" + password + ", carros=" + carros + "]";
+	public Set<Role> getRoles() {
+		return roles;
 	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 }

@@ -15,7 +15,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
 	@Query(value = "select count(*) from pessoa ", nativeQuery = true)
 	public Integer contar();
 
-	@Query(value = "select * from pessoa u where email = :email", nativeQuery = true)
+	@Query(value = "select * from pessoa where email = :email", nativeQuery = true)
 	public Optional<Pessoa> findByEmail(@Param("email") String email);
 
 }

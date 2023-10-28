@@ -17,7 +17,6 @@ import br.com.api.trabalhoIndividual.dto.CarroRequisicaoDTO;
 import br.com.api.trabalhoIndividual.dto.CarroRespostaDTO;
 import br.com.api.trabalhoIndividual.entities.Carro;
 import br.com.api.trabalhoIndividual.services.CarroService;
-import br.com.api.trabalhoIndividual.services.EmailService;
 
 @RestController
 @RequestMapping("/carro")
@@ -25,8 +24,6 @@ public class CarroController {
 
 	@Autowired
 	CarroService carroService;
-	@Autowired
-	EmailService emailService;
 
 	@GetMapping("/count")
 	public Integer getCount() {
@@ -58,8 +55,4 @@ public class CarroController {
 		return carroService.atualizar(id, objetoProduto);
 	}
 
-	/*
-	 * @GetMapping("/promocao") public List<CarroRespostaDTO> promocao() {
-	 * emailService.envioEmailPromo(); return carroService.promocao(); }
-	 */
 }

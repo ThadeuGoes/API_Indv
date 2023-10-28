@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.com.api.trabalhoIndividual.dto.CarroRequisicaoDTO;
 import br.com.api.trabalhoIndividual.dto.CarroRespostaDTO;
@@ -15,6 +16,7 @@ import br.com.api.trabalhoIndividual.entities.Pessoa;
 import br.com.api.trabalhoIndividual.repositories.CarroRepository;
 import br.com.api.trabalhoIndividual.repositories.PessoaRepository;
 
+@Service
 public class CarroService {
 
 	@Autowired
@@ -24,13 +26,20 @@ public class CarroService {
 
 	public Carro parseDeCarroRequisicao(CarroRequisicaoDTO objeto) {
 		Carro carroNovo = new Carro();
-
+		
+		carroNovo.setNome(objeto.getNome());
+		carroNovo.setDataFabricacao(objeto.getDataFabricacao());
+		
 		return carroNovo;
 	}
 
 	public CarroRespostaDTO parseDeProdutoResposta(Carro objeto) {
 		CarroRespostaDTO carroNovo = new CarroRespostaDTO();
 
+		carroNovo.setNome(objeto.getNome());
+		carroNovo.setDataFabricacao(objeto.getDataFabricacao());
+		carroNovo.setAtivo(objeto.getAtivo());
+		
 		return carroNovo;
 	}
 
