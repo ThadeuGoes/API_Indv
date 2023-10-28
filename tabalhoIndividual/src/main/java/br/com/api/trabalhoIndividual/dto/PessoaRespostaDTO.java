@@ -9,13 +9,13 @@ public class PessoaRespostaDTO {
 	private String nome;
 	private String email;
 	private Boolean ativo;
-	private List<Carro> carros;
+	private List<CarroRespostaDTO> carros;
 
 	public PessoaRespostaDTO() {
 		super();
 	}
 
-	public PessoaRespostaDTO(String nome, String email, Boolean ativo, List<Carro> carros) {
+	public PessoaRespostaDTO(String nome, String email, Boolean ativo, List<CarroRespostaDTO> carros) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -47,12 +47,11 @@ public class PessoaRespostaDTO {
 		this.ativo = ativo;
 	}
 
-	public List<Carro> getCarros() {
+	public List<CarroRespostaDTO> getCarros() {
 		return carros;
 	}
 
-	public void setCarros(List<Carro> carros) {
+	public void setCarros(List<CarroRespostaDTO> carros) {
 		this.carros = carros;
 	}
-
 }

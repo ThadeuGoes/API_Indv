@@ -45,10 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da
 																	// API
 		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()
-/*permitAll*/	.antMatchers("/roles","/pessoa/login","/pessoa/registro","/carro/count","/carro/listar").permitAll()
-/*locatario*/	.antMatchers("/endereco/reativarEndereco/{id}","/endereco/atualizar/{id}","/endereco/deletarLogico/{id}","/endereco/salvar").hasRole("LOCATARIO")
-/*funcionario*/	.antMatchers("/pessoa/deletarLogico/{id}","/pessoa/listar","/pessoa/{id}","/pessoa/count","/endereco/listar","/endereco/{id}","/endereco/count","/carro/deletar/{id}","/carro/atualizar/{id}","/carro/salvar").hasRole("FUNCIONARIO")
-/*ambos*/		.antMatchers("/pessoa/reativar/{id}","/pessoa/trocaSenha/{id}","/pessoa/atualizar/{id}","/carro/{id}").hasAnyRole("LOCATARIO","FUNCIONARIO")
+/*permitAll*/	.antMatchers("/carro/count","/carro/listar","/pessoa/registro","/pessoa/login","/roles").permitAll()
+/*locatario*/	.antMatchers("/carro/alugar/{id}","/carro/devolverCarro/{id}","/endereco/salvar","/endereco/deletarLogico/{id}","/endereco/atualizar/{id}","/endereco/reativarEndereco/{id}").hasRole("LOCATARIO")
+/*funcionario*/	.antMatchers("/carro/salvar","/carro/deletar/{id}","/carro/atualizar/{id}","/endereco/count","/endereco/{id}","/endereco/listar","/pessoa/count","/pessoa/{id}","/pessoa/listar").hasRole("FUNCIONARIO")
+/*ambos*/		.antMatchers("/carro/{id}","/pessoa/deletarLogico/{id}","/pessoa/atualizar/{id}","/pessoa/trocaSenha/{id}","/pessoa/reativar/{id}").hasAnyRole("LOCATARIO","FUNCIONARIO")
 				
 				.and().userDetailsService(uds).exceptionHandling()
 				.authenticationEntryPoint((request, response, authException) -> response

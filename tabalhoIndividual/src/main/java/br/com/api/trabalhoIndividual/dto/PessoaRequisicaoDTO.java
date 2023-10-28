@@ -14,17 +14,17 @@ public class PessoaRequisicaoDTO {
 	private String cpf;
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
-	private List<Carro> carros;
+	private List<CarroRequisicaoDTO> carros;
 	private Set<String> roles;
 	private String cep;
 	private String complemento;
 	private String numero;
-
+	
 	public PessoaRequisicaoDTO() {
 		super();
 	}
 
-	public PessoaRequisicaoDTO(String nome, String email, String cpf, String password, List<Carro> carros,
+	public PessoaRequisicaoDTO(String nome, String email, String cpf, String password, List<CarroRequisicaoDTO> carros,
 			Set<String> roles, String cep, String complemento, String numero) {
 		super();
 		this.nome = nome;
@@ -70,11 +70,11 @@ public class PessoaRequisicaoDTO {
 		this.password = password;
 	}
 
-	public List<Carro> getCarros() {
+	public List<CarroRequisicaoDTO> getCarros() {
 		return carros;
 	}
 
-	public void setCarros(List<Carro> carros) {
+	public void setCarros(List<CarroRequisicaoDTO> carros) {
 		this.carros = carros;
 	}
 
@@ -109,5 +109,4 @@ public class PessoaRequisicaoDTO {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-
 }

@@ -10,8 +10,11 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.api.trabalhoIndividual.dto.CarroRequisicaoDTO;
+import br.com.api.trabalhoIndividual.dto.CarroRespostaDTO;
 import br.com.api.trabalhoIndividual.dto.PessoaRequisicaoDTO;
 import br.com.api.trabalhoIndividual.dto.PessoaRespostaDTO;
+import br.com.api.trabalhoIndividual.entities.Carro;
 import br.com.api.trabalhoIndividual.entities.Pessoa;
 import br.com.api.trabalhoIndividual.entities.Role;
 import br.com.api.trabalhoIndividual.enums.TipoRoleEnum;
@@ -22,15 +25,22 @@ public class PessoaService {
 
 	@Autowired
 	PessoaRepository pessoaRepository;
+	@Autowired
+	CarroService carroService;
 
 	public Pessoa parseDePessoaRequisicao(PessoaRequisicaoDTO obj) {
 		Pessoa pessoaNova = new Pessoa();
+		List<Carro> carros = new ArrayList<>();
 
 		pessoaNova.setNome(obj.getNome());
 		pessoaNova.setEmail(obj.getEmail());
 		pessoaNova.setCpf(obj.getCpf());
 		pessoaNova.setPassword(obj.getPassword());
-		pessoaNova.setCarros(obj.getCarros());
+
+		for (CarroRequisicaoDTO carro : obj.getCarros()) {
+			carros.add(carroService.parseDeCarroRequisicao(carro));
+		}
+		pessoaNova.setCarros(carros);
 
 		Set<Role> roles = new HashSet<>();
 		for (String role : obj.getRoles()) {
@@ -46,11 +56,16 @@ public class PessoaService {
 
 	public PessoaRespostaDTO parseDePessoaResposta(Pessoa obj) {
 		PessoaRespostaDTO pessoaNova = new PessoaRespostaDTO();
+		List<CarroRespostaDTO> carros = new ArrayList<>();
 
 		pessoaNova.setNome(obj.getNome());
 		pessoaNova.setEmail(obj.getEmail());
 		pessoaNova.setAtivo(obj.getAtivo());
-		pessoaNova.setCarros(obj.getCarros());
+
+		for (Carro carro : obj.getCarros()) {
+			carros.add(carroService.parseDeProdutoResposta(carro));
+		}
+		pessoaNova.setCarros(carros);
 
 		return pessoaNova;
 	}
