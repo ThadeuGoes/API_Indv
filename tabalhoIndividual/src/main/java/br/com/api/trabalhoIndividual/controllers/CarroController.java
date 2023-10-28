@@ -49,10 +49,19 @@ public class CarroController {
 	public void deletar(@PathVariable Integer id) {
 		carroService.deletar(id);
 	}
+	
+	@DeleteMapping("/alugar/{id}")
+	public void alugar(@PathVariable Integer id) {
+		carroService.alugar(id);
+	}
 
 	@PutMapping("/atualizar/{id}")
 	public Carro atualizar(@PathVariable Integer id, @RequestBody CarroRequisicaoDTO objetoProduto) {
 		return carroService.atualizar(id, objetoProduto);
 	}
-
+	
+	@PutMapping("/devolverCarro/{id}")
+	public void devolverCarro(@PathVariable Integer id) {
+		carroService.devolverCarro(id);
+	}
 }

@@ -87,11 +87,11 @@ public class EmailService {
 			builder.append("</div>\r\n");
 			builder.append("");
 			builder.append("<div align=\"center\">\r\n");
-			builder.append("<p>Parabéns " + nome + " por agora fazer parte do melhor marketplace do mundo!!!</p>");
+			builder.append("<p>Parabéns " + nome + " agora voce pode alugar carros a preços otimos!!!</p>");
 			builder.append("<p>Esperamos que tenha uma boa experiência conosco.</p>");
 			builder.append(
 					"<a href=http:\"//localhost:8080/api/swagger-ui/index.html#/\"\"\">Clique aqui para voltar ao site </a>\r\n");
-			builder.append("<p>Atenciosamente Grupo 4.\r\n</p>");
+			builder.append("<p>Atenciosamente Locadoras Thadeu.\r\n</p>");
 			builder.append("");
 			builder.append("</div>\r\n");
 			builder.append("</body>\r\n");
@@ -117,15 +117,27 @@ public class EmailService {
 			helper.setFrom("gp4api.serratec@gmail.com");
 			helper.setTo(pessoa.getEmail());
 			String nome = pessoa.getNome();
-			helper.setSubject("Olá " + nome + " vamos recuperar o sua conta");
+			helper.setSubject("Olá " + nome + " recuperamos a sua conta");
 			StringBuilder builder = new StringBuilder();
-			builder.append("<html>\r\n" + "<body>\r\n" + "" + "<div align=\"center\">\r\n"
-					+ "<h1>Recuperação de conta</h1>\r\n" + "</div>\r\n" + "<br/>\r\n" + ""
-					+ "<div align=\"center\">\r\n" + "<img src=\"cid:logo\">" + "</div>\r\n" + ""
+			builder.append("<html>\r\n" 
+					+ "<body>\r\n" 
+					+ "" 
 					+ "<div align=\"center\">\r\n"
-					+ "<p>Se vocé estáá tentando recuperar sua conta, <a href=\"http://localhost:8080/api/swagger-ui/index.html#/\">clique aqui</a> para ver o e-mail cadastrado.</p>"
+					+ "<h1>Recuperamos sua conta</h1>\r\n" 
+					+ "</div>\r\n" 
+					+ "<br/>\r\n" 
+					+ ""
+					+ "<div align=\"center\">\r\n" 
+					+ "<img src=\"cid:logo\">" 
+					+ "</div>\r\n" 
+					+ ""
+					+ "<div align=\"center\">\r\n"
+					+ "<p>sua conta foi reativada, <a href=\"http://localhost:8080/api/swagger-ui/index.html#/\">clique aqui</a> para ver o e-mail cadastrado.</p>"
 					+ "<p>Se vocé não reconhece essa requisição ignore esse email.</p>"
-					+ "<p>Atenciosamente Grupo 4.</p>" + "</div>" + "</body>\r\n" + "</html>\r\n");
+					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "</div>" 
+					+ "</body>\r\n" 
+					+ "</html>\r\n");
 
 			helper.setText(builder.toString(), true);
 
@@ -147,15 +159,27 @@ public class EmailService {
 			helper.setFrom("gp4api.serratec@gmail.com");
 			helper.setTo(pessoa.getEmail());
 			String nome = pessoa.getNome();
-			helper.setSubject("Olá " + nome + " vamos recuperar a sua senha");
+			helper.setSubject("Olá " + nome + " sua senha foi redefinida");
 			StringBuilder builder = new StringBuilder();
-			builder.append("<html>\r\n" + "<body>\r\n" + "" + "<div align=\"center\">\r\n"
-					+ "<h1>Recuperação de senha</h1>\r\n" + "</div>\r\n" + "<br/>\r\n" + ""
-					+ "<div align=\"center\">\r\n" + "<img src=\"cid:logo\">" + "</div>\r\n" + ""
+			builder.append("<html>\r\n" 
+					+ "<body>\r\n" 
+					+ "" 
+					+ "<div align=\"center\">\r\n"
+					+ "<h1>senha redefinida</h1>\r\n" 
+					+ "</div>\r\n" 
+					+ "<br/>\r\n" 
+					+ ""
+					+ "<div align=\"center\">\r\n" 
+					+ "<img src=\"cid:logo\">" 
+					+ "</div>\r\n" 
+					+ ""
 					+ "<div align=\"center\">\r\n"
 					+ "<p>Se vocé pediu a redefinição de senha<a href=\"http://localhost:8080/api/swagger-ui/index.html#/\"> clique aqui</a>.</p>"
 					+ "<p>Se vocé não reconhece essa requisição ignore esse email.</p>"
-					+ "<p>Atenciosamente Grupo 4.</p>" + "</div>" + "</body>\r\n" + "</html>\r\n");
+					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "</div>" 
+					+ "</body>\r\n" 
+					+ "</html>\r\n");
 
 			helper.setText(builder.toString(), true);
 
@@ -180,13 +204,26 @@ public class EmailService {
 			helper.setSubject("Olá " + nome + " sua conta foi apagada com sucesso.");
 
 			StringBuilder builder = new StringBuilder();
-			builder.append("<html>\r\n" + "<body>\r\n" + "" + "<div align=\"center\">\r\n"
-					+ "<h1>Conta apagada com sucesso</h1>\r\n" + "</div>\r\n" + "<br/>\r\n" + ""
-					+ "<div align=\"center\">\r\n" + "<img src=\"cid:logo\">" + "</div>\r\n" + ""
-					+ "<div align=\"center\">\r\n" + ""
+			builder.append("<html>\r\n" 
+					+ "<body>\r\n" 
+					+ "" 
+					+ "<div align=\"center\">\r\n"
+					+ "<h1>Conta apagada com sucesso</h1>\r\n" 
+					+ "</div>\r\n" 
+					+ "<br/>\r\n" 
+					+ ""
+					+ "<div align=\"center\">\r\n" 
+					+ "<img src=\"cid:logo\">" 
+					+ "</div>\r\n" 
+					+ ""
+					+ "<div align=\"center\">\r\n" 
+					+ ""
 					+ "<p>Agradecemos por utilizar nossos serviços, sua conta foi finalizada.</p>"
 					+ "<p>Esperamos que você tenha tido uma boa experiência conosco! Até a próxima ;)</p>"
-					+ "<p>Atenciosamente Grupo 4.</p>" + "</div>" + "</body>\r\n" + "</html>\r\n");
+					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "</div>" 
+					+ "</body>\r\n" 
+					+ "</html>\r\n");
 
 			helper.setText(builder.toString(), true);
 

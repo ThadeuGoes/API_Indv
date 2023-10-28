@@ -25,6 +25,14 @@ public class EnderecoService {
 	@Autowired
 	PessoaRepository usuarioRepository;
 
+	public Endereco pesquisarEndereco(String cep) {
+		RestTemplate restTemplate = new RestTemplate();
+		String uri = "http://viacep.com.br/ws/{cep}/json/";
+		Map<String, String> params = new HashMap<>();
+		params.put("cep", cep);
+		return restTemplate.getForObject(uri, Endereco.class, params);
+	}
+
 	public Endereco parseDeEndereco(EnderecoDTO endereco) {
 		Endereco viaCep = pesquisarEndereco(endereco.getCep());
 		Endereco enderecoNovo = new Endereco();
@@ -106,14 +114,6 @@ public class EnderecoService {
 		}
 		registroAntigo.setId(id);
 		return enderecoRepository.save(registroAntigo);
-	}
-
-	public Endereco pesquisarEndereco(String cep) {
-		RestTemplate restTemplate = new RestTemplate();
-		String uri = "http://viacep.com.br/ws/{cep}/json/";
-		Map<String, String> params = new HashMap<>();
-		params.put("cep", cep);
-		return restTemplate.getForObject(uri, Endereco.class, params);
 	}
 
 	public void reativacaoDeEndereco(Integer id) {

@@ -98,13 +98,12 @@ public class PessoaController {
 	@PutMapping("/trocaSenha/{id}")
 	public void trocarSenha(@PathVariable Integer id, @RequestParam String senha) {
 		pessoaService.recuperarSenha(id, senha);
-//		emailService.envioEmailRecuperacaoSenha(pessoaRepository.findById(id).get());
 	}
 
 	@PutMapping("/reativar/{id}")
 	public void reativarConta(@PathVariable Integer id) {
 		pessoaService.recuperarConta(id);
-//		emailService.envioEmailRecuperacaoConta(pessoaRepository.findById(id).get());
+		emailService.envioEmailRecuperacaoConta(pessoaRepository.findById(id).get());
 	}
 
 	// Registro de usuario
@@ -202,14 +201,13 @@ public class PessoaController {
 			// Criando o token que sera usado no processo de autenticacao
 			UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(
 					body.getEmail(), body.getPassword());
-			System.out.println("aqui");//TODO
 			// Autenticando as credenciais de login
 			authManager.authenticate(authInputToken);
 
 			// Se o processo de autenticacao foi concluido com sucesso - etapa anterior,
 			// eh gerado o JWT
 //	            String token = jwtUtil.generateToken(body.getEmail());
-			System.out.println("aqui");//TODO
+
 			Pessoa pessoa = pessoaService.findByEmail(body.getEmail());
 			Pessoa usuarioResumido = new Pessoa();
 			usuarioResumido.setNome(pessoa.getNome());
@@ -218,7 +216,6 @@ public class PessoaController {
 			usuarioResumido.setRoles(pessoa.getRoles());
 			// Gerando o token JWT a partir dos dados do Usuario
 			String token = jwtUtil.generateTokenWithUsuarioData(usuarioResumido);
-			System.out.println("aqui");//TODO
 			// Responde com o JWT
 			return Collections.singletonMap("jwt-token", token);
 		} catch (AuthenticationException authExc) {

@@ -26,10 +26,10 @@ public class CarroService {
 
 	public Carro parseDeCarroRequisicao(CarroRequisicaoDTO objeto) {
 		Carro carroNovo = new Carro();
-		
+
 		carroNovo.setNome(objeto.getNome());
 		carroNovo.setDataFabricacao(objeto.getDataFabricacao());
-		
+
 		return carroNovo;
 	}
 
@@ -39,7 +39,7 @@ public class CarroService {
 		carroNovo.setNome(objeto.getNome());
 		carroNovo.setDataFabricacao(objeto.getDataFabricacao());
 		carroNovo.setAtivo(objeto.getAtivo());
-		
+
 		return carroNovo;
 	}
 
@@ -78,11 +78,11 @@ public class CarroService {
 		return carrosResposta;
 	}
 
-	public void deletar(Integer id) {
-		if (carroRepository.findById(id).get() == null) {
-			throw new EntityNotFoundException("Esse produto não existe");
-		} else {
-			carroRepository.deleteById(id);
+	public void alugar(Integer id) {
+		Optional<Carro> objTeste = carroRepository.findById(id);
+		if (objTeste != null) {
+			objTeste.get().setAtivo(false);
+			carroRepository.save(objTeste.get());
 		}
 	}
 
@@ -106,6 +106,22 @@ public class CarroService {
 
 			registroAntigo.get().setId(id);
 			return carroRepository.save(registroAntigo.get());
+		}
+	}
+
+	public void deletar(Integer id) {
+		if (carroRepository.findById(id).get() == null) {
+			throw new EntityNotFoundException("Esse produto não existe");
+		} else {
+			carroRepository.deleteById(id);
+		}
+	}
+	
+	public void devolverCarro(Integer id) {
+		Optional<Carro> objTeste = carroRepository.findById(id);
+		if (objTeste != null) {
+			objTeste.get().setAtivo(true);
+			carroRepository.save(objTeste.get());
 		}
 	}
 }

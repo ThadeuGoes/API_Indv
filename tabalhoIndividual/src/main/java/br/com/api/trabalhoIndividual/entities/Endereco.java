@@ -39,13 +39,10 @@ public class Endereco {
 	@NotBlank(message = "UF não pode ser vazio.")
 	@Size(max = 2)
 	private String uf;
-
 	private Boolean ativo;
 	@NotNull
 	@NotBlank
 	private String numero;
-
-	// @JsonProperty(access=JsonProperty.Access.READ_ONLY)
 
 	public Endereco() {
 		super();
