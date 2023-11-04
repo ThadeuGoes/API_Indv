@@ -2,14 +2,12 @@ package br.com.api.trabalhoIndividual.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "carro")
@@ -20,6 +18,7 @@ public class Carro {
 	private Integer id;
 	private String nome;
 	private LocalDate dataFabricacao;
+	@Column(columnDefinition = "TEXT")
 	private String descricao;
 	private Double valor;
 	private String img;
