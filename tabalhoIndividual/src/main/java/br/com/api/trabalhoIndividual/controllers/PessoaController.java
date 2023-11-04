@@ -109,18 +109,18 @@ public class PessoaController {
 	// Registro de usuario
 	@SuppressWarnings("unused")
 	@PostMapping("/registro")
-	public Pessoa cadastro(@RequestParam String email, @RequestBody PessoaRequisicaoDTO pessoa) {
+	public Pessoa cadastro(@RequestBody PessoaRequisicaoDTO pessoa) {
 
 		// usuario = usuarioService.save(usuario);
 
 		// Gerando o token JWT a partir do e-mail do Usuario
 		// String token = jwtUtil.generateToken(pessoa.getEmail());
 		Set<String> usuarioMaiusculo = new HashSet<>();
-
-		for (String str : pessoa.getRoles()) {
-			usuarioMaiusculo.add(str.toUpperCase());
+		if (pessoa.getRoles() != null) {
+			for (String str : pessoa.getRoles()) {
+				usuarioMaiusculo.add(str.toUpperCase());
+			}
 		}
-
 		Set<String> strRoles = usuarioMaiusculo;
 		Set<Role> roles = new HashSet<>();
 
@@ -157,10 +157,10 @@ public class PessoaController {
 		endereco.setUf(viaCep.getUf());
 		endereco.setAtivo(true);
 
-		Carro carro = new Carro();
-		carro.setAtivo(true);
-		carro.setDataFabricacao(pessoa.getCarros().get(0).getDataFabricacao());
-		carro.setNome(pessoa.getCarros().get(0).getNome());
+//		Carro carro = new Carro();
+//		carro.setAtivo(true);
+//		carro.setDataFabricacao(pessoa.getCarros().get(0).getDataFabricacao());
+//		carro.setNome(pessoa.getCarros().get(0).getNome());
 
 		Pessoa pessoaResumido = new Pessoa();
 		pessoaResumido.setAtivo(true);
@@ -176,10 +176,10 @@ public class PessoaController {
 		pessoaResumido.setPassword(encodedPass);
 		pessoaRepository.save(pessoaResumido);
 
-		List<Carro> carros = new ArrayList<>();
-		carros.add(carro);
-		pessoaResumido.setCarros(carros);
-		carroRepository.save(carro);
+//		List<Carro> carros = new ArrayList<>();
+//		carros.add(carro);
+//		pessoaResumido.setCarros(carros);
+//		carroRepository.save(carro);
 
 		List<Endereco> enderecos = new ArrayList<>();
 		enderecos.add(endereco);
@@ -187,9 +187,8 @@ public class PessoaController {
 //	        String token = jwtUtil.generateTokenWithUsuarioData(usuarioResumido);
 //	        Collections.singletonMap("jwt-token", token);
 
-
 		enderecoRepository.save(endereco);
-		
+
 		emailService.envioEmailCadastro(pessoa);
 		return pessoaRepository.save(pessoaResumido);
 	}
