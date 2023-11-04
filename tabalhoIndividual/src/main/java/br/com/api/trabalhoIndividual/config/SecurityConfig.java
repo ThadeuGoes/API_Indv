@@ -45,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception { // Metodo encarregado de configurar a seguranca da
 																	// API
 		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()
+		
 /*permitAll*/	.antMatchers("/carro/count","/carro/listar","/pessoa/registro","/pessoa/login","/roles").permitAll()
 /*locatario*/	.antMatchers("/carro/alugar/{id}","/carro/devolverCarro/{id}","/endereco/salvar","/endereco/deletarLogico/{id}","/endereco/atualizar/{id}","/endereco/reativarEndereco/{id}").hasRole("LOCATARIO")
 /*funcionario*/	.antMatchers("/carro/salvar","/carro/deletar/{id}","/carro/atualizar/{id}","/endereco/count","/endereco/{id}","/endereco/listar","/pessoa/count","/pessoa/{id}","/pessoa/listar").hasRole("FUNCIONARIO")

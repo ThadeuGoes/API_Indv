@@ -20,19 +20,24 @@ public class Carro {
 	private Integer id;
 	private String nome;
 	private LocalDate dataFabricacao;
+	private String descricao;
+	private Double valor;
+	private String img;
 	private Boolean ativo;
 
 	public Carro() {
 		super();
 	}
 
-	public Carro(Integer id,
-			@NotNull(message = "Nome não pode ser nulo.") @NotBlank(message = "Nome não pode ser vazio.") @Size(max = 50) String nome,
-			LocalDate dataFabricacao, Boolean ativo) {
+	public Carro(Integer id, String nome, LocalDate dataFabricacao, String descricao, Double valor, String img,
+			Boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.dataFabricacao = dataFabricacao;
+		this.descricao = descricao;
+		this.valor = valor;
+		this.img = img;
 		this.ativo = ativo;
 	}
 
@@ -60,6 +65,30 @@ public class Carro {
 		this.dataFabricacao = dataFabricacao;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public Boolean getAtivo() {
 		return ativo;
 	}
@@ -70,6 +99,8 @@ public class Carro {
 
 	@Override
 	public String toString() {
-		return "Carro [id=" + id + ", nome=" + nome + ", dataFabricacao=" + dataFabricacao + ", ativo=" + ativo + "]";
+		return "Carro [id=" + id + ", nome=" + nome + ", dataFabricacao=" + dataFabricacao + ", descricao=" + descricao
+				+ ", valor=" + valor + ", img=" + img + ", ativo=" + ativo + "]";
 	}
+
 }
