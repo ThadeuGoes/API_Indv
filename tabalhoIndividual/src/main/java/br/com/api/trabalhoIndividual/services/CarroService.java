@@ -25,23 +25,29 @@ public class CarroService {
 	PessoaRepository pessoaRepository;
 
 	public Carro parseDeCarroRequisicao(CarroRequisicaoDTO objeto) {
-		Carro carroNovo = new Carro();
+        Carro carroNovo = new Carro();
 
-		carroNovo.setNome(objeto.getNome());
-		carroNovo.setDataFabricacao(objeto.getDataFabricacao());
+        carroNovo.setNome(objeto.getNome());
+        carroNovo.setDataFabricacao(objeto.getDataFabricacao());
+        carroNovo.setImg(objeto.getImg());
+        carroNovo.setValor(objeto.getValor());
+        carroNovo.setDescricao(objeto.getDescricao());
 
-		return carroNovo;
-	}
+        return carroNovo;
+    }
 
-	public CarroRespostaDTO parseDeProdutoResposta(Carro objeto) {
-		CarroRespostaDTO carroNovo = new CarroRespostaDTO();
+    public CarroRespostaDTO parseDeProdutoResposta(Carro objeto) {
+        CarroRespostaDTO carroNovo = new CarroRespostaDTO();
 
-		carroNovo.setNome(objeto.getNome());
-		carroNovo.setDataFabricacao(objeto.getDataFabricacao());
-		carroNovo.setAtivo(objeto.getAtivo());
+        carroNovo.setNome(objeto.getNome());
+        carroNovo.setDataFabricacao(objeto.getDataFabricacao());
+        carroNovo.setAtivo(objeto.getAtivo());
+        carroNovo.setImg(objeto.getImg());
+        carroNovo.setDescricao(objeto.getDescricao());
+        carroNovo.setValor(objeto.getValor());
 
-		return carroNovo;
-	}
+        return carroNovo;
+    }
 
 	public Integer getCount() {
 		return carroRepository.contar();
