@@ -73,6 +73,12 @@ public class PessoaController {
 	public Integer getCount() {
 		return pessoaService.getCount();
 	}
+	
+	@PostMapping("/mensagem")
+	public String mensagem(@RequestParam String nome,@RequestParam String email,@RequestParam String mensagem) {
+		emailService.mensagem(nome,email,mensagem);
+		return "Email enviado";
+	}
 
 	@GetMapping("/{id}")
 	public PessoaRespostaDTO acharId(@PathVariable Integer id) {

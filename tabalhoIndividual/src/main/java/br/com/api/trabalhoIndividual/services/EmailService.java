@@ -236,4 +236,48 @@ public class EmailService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void mensagem(String nome,String email,String mensagem) {
+		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
+
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
+			helper.setFrom("gp4api.serratec@gmail.com");
+			helper.setTo("victorsoares.c@gmail.com");
+			helper.setSubject("mensagem de "+nome);
+
+			StringBuilder builder = new StringBuilder();
+			builder.append("<html>\r\n" 
+					+ "<body>\r\n" 
+					+ "" 
+					+ "<div align=\"center\">\r\n"
+					+ "<h1>mensagem de "+nome+"</h1>\r\n" 
+					+ "</div>\r\n" 
+					+ "<br/>\r\n" 
+					+ ""
+					+ "<div align=\"center\">\r\n" 
+					+ "<img src=\"cid:logo\">" 
+					+ "</div>\r\n" 
+					+ ""
+					+ "<div align=\"center\">\r\n" 
+					+ ""
+					+ "<p>"+mensagem+"</p>"
+					+ "<p>email: "+email+"</p>"
+					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "</div>" 
+					+ "</body>\r\n" 
+					+ "</html>\r\n");
+			
+			
+			helper.setText(builder.toString(), true);
+
+			ClassPathResource imageResource = new ClassPathResource("img/image.png");
+			helper.addInline("logo", imageResource);
+
+			emailSender.send(mensagemCadastro);
+
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
 }
