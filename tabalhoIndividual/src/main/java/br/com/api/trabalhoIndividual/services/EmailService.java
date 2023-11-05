@@ -89,9 +89,8 @@ public class EmailService {
 			builder.append("<div align=\"center\">\r\n");
 			builder.append("<p>Parabéns " + nome + " agora voce pode alugar carros a preços otimos!!!</p>");
 			builder.append("<p>Esperamos que tenha uma boa experiência conosco.</p>");
-			builder.append(
-					"<a href=http:\"//localhost:8080/api/swagger-ui/index.html#/\"\"\">Clique aqui para voltar ao site </a>\r\n");
-			builder.append("<p>Atenciosamente Locadoras Thadeu.\r\n</p>");
+			builder.append("<a href=http:\"//localhost:5173/\"\"\">Clique aqui para voltar ao site </a>\r\n");
+			builder.append("<p>Atenciosamente Auto Voyage.\r\n</p>");
 			builder.append("");
 			builder.append("</div>\r\n");
 			builder.append("</body>\r\n");
@@ -132,9 +131,9 @@ public class EmailService {
 					+ "</div>\r\n" 
 					+ ""
 					+ "<div align=\"center\">\r\n"
-					+ "<p>sua conta foi reativada, <a href=\"http://localhost:8080/api/swagger-ui/index.html#/\">clique aqui</a> para ver o e-mail cadastrado.</p>"
+					+ "<p>sua conta foi reativada, \"<a href=http:\"//localhost:5173/\">Clique aqui para voltar ao site </a> para ver o e-mail cadastrado.</p>"
 					+ "<p>Se vocé não reconhece essa requisição ignore esse email.</p>"
-					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "<p>Atenciosamente Auto Voyage.</p>" 
 					+ "</div>" 
 					+ "</body>\r\n" 
 					+ "</html>\r\n");
@@ -174,9 +173,9 @@ public class EmailService {
 					+ "</div>\r\n" 
 					+ ""
 					+ "<div align=\"center\">\r\n"
-					+ "<p>Se vocé pediu a redefinição de senha<a href=\"http://localhost:8080/api/swagger-ui/index.html#/\"> clique aqui</a>.</p>"
+					+ "<p>Se vocé pediu a redefinição de senha<a href=http:\"//localhost:5173/\">Clique aqui para voltar ao site </a>.</p>"
 					+ "<p>Se vocé não reconhece essa requisição ignore esse email.</p>"
-					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "<p>Atenciosamente Auto Voyage.</p>" 
 					+ "</div>" 
 					+ "</body>\r\n" 
 					+ "</html>\r\n");
@@ -220,7 +219,7 @@ public class EmailService {
 					+ ""
 					+ "<p>Agradecemos por utilizar nossos serviços, sua conta foi finalizada.</p>"
 					+ "<p>Esperamos que você tenha tido uma boa experiência conosco! Até a próxima ;)</p>"
-					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "<p>Atenciosamente Auto Voyage.</p>" 
 					+ "</div>" 
 					+ "</body>\r\n" 
 					+ "</html>\r\n");
@@ -263,7 +262,7 @@ public class EmailService {
 					+ ""
 					+ "<p>"+mensagem+"</p>"
 					+ "<p>email: "+email+"</p>"
-					+ "<p>Atenciosamente Locadoras Thadeu.</p>" 
+					+ "<p>Atenciosamente Auto Voyage.</p>" 
 					+ "</div>" 
 					+ "</body>\r\n" 
 					+ "</html>\r\n");
