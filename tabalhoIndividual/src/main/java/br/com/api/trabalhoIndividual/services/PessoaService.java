@@ -93,15 +93,15 @@ public class PessoaService {
 		return pessoaResposta;
 	}
 
-	public void deletarLogico(Integer id) {
-		if (pessoaRepository.findById(id).get() == null) {
-			throw new EntityNotFoundException("Esse usuario não existe");
+	public void deletarLogico(String email, String senha) {
+		Pessoa objUsuario = pessoaRepository.findByEmail(email).get();
+		System.out.println(objUsuario.getEmail());
+
+		if (objUsuario == null || !objUsuario.getPassword().equals(senha)) {
+			throw new EntityNotFoundException("Email ou senha invalidos");
 		} else {
-			Pessoa obgUsuario = pessoaRepository.findById(id).get();
-			if (obgUsuario != null) {
-				obgUsuario.setAtivo(false);
-				pessoaRepository.save(obgUsuario);
-			}
+			objUsuario.setAtivo(false);
+			pessoaRepository.save(objUsuario);
 		}
 	}
 

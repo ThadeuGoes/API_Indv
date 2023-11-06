@@ -12,7 +12,7 @@ import br.com.api.trabalhoIndividual.entities.Pessoa;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Integer> {
 
-	@Query(value = "select count(*) from pessoa where ativo = true; ", nativeQuery = true)
+	@Query(value = "select count(*) from pessoa where ativo = true", nativeQuery = true)
 	public Integer contar();
 
 	@Query(value = "select * from pessoa where email = :email", nativeQuery = true)

@@ -90,10 +90,11 @@ public class PessoaController {
 		return pessoaService.listar();
 	}
 
-	@DeleteMapping("/deletarLogico/{id}")
-	public void deletarLogico(@PathVariable Integer id) {
-//		emailService.envioEmailDelete(pessoaRepository.findById(id).get());
-		pessoaService.deletarLogico(id);
+	@DeleteMapping("/deletarLogico")
+	public void deletarLogico(@RequestParam String email, @RequestParam String password) {
+		
+		pessoaService.deletarLogico(email,password);
+		emailService.envioEmailDelete(email);
 	}
 
 	@PutMapping("/atualizar/{id}")

@@ -192,15 +192,14 @@ public class EmailService {
 		}
 	}
 
-	public void envioEmailDelete(Pessoa pessoa) {
+	public void envioEmailDelete(String email) {
 		MimeMessage mensagemCadastro = emailSender.createMimeMessage();
 
 		try {
 			MimeMessageHelper helper = new MimeMessageHelper(mensagemCadastro, true);
 			helper.setFrom("gp4api.serratec@gmail.com");
-			helper.setTo(pessoa.getEmail());
-			String nome = pessoa.getNome();
-			helper.setSubject("Olá " + nome + " sua conta foi apagada com sucesso.");
+			helper.setTo(email);
+			helper.setSubject("sua conta foi apagada com sucesso.");
 
 			StringBuilder builder = new StringBuilder();
 			builder.append("<html>\r\n" 
