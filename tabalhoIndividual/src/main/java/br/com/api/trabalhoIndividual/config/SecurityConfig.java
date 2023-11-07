@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 																	// API
 		http.cors().and().csrf().disable().httpBasic().disable().authorizeHttpRequests()
 
-				.antMatchers("/carro/count", "/carro/listar", "/pessoa/registro", "/pessoa/login", "/roles").permitAll()
+				.antMatchers("/carro/count", "/carro/listar", "/pessoa/registro", "/pessoa/login","/pessoa/mensagem", "/roles").permitAll()
 
 				.antMatchers("/carro/alugar/{id}", "/carro/devolverCarro/{id}", "/endereco/salvar",
 						"/endereco/deletarLogico/{id}", "/endereco/atualizar/{id}", "/endereco/reativarEndereco/{id}")
@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/carro/{id}", "/pessoa/deletarLogico/{id}", "/pessoa/atualizar/{id}",
 						"/pessoa/trocaSenha/{id}", "/pessoa/reativar/{id}")
 				.permitAll()//.hasAnyRole("LOCATARIO", "FUNCIONARIO")
+
 
 				.and().userDetailsService(uds).exceptionHandling()
 				.authenticationEntryPoint((request, response, authException) -> response

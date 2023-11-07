@@ -26,7 +26,6 @@ import br.com.api.trabalhoIndividual.config.JWTUtil;
 import br.com.api.trabalhoIndividual.dto.LoginDTO;
 import br.com.api.trabalhoIndividual.dto.PessoaRequisicaoDTO;
 import br.com.api.trabalhoIndividual.dto.PessoaRespostaDTO;
-import br.com.api.trabalhoIndividual.entities.Carro;
 import br.com.api.trabalhoIndividual.entities.Endereco;
 import br.com.api.trabalhoIndividual.entities.Pessoa;
 import br.com.api.trabalhoIndividual.entities.Role;
@@ -73,10 +72,10 @@ public class PessoaController {
 	public Integer getCount() {
 		return pessoaService.getCount();
 	}
-	
+
 	@PostMapping("/mensagem")
-	public String mensagem(@RequestParam String nome,@RequestParam String email,@RequestParam String mensagem) {
-		emailService.mensagem(nome,email,mensagem);
+	public String mensagem(@RequestParam String nome, @RequestParam String email, @RequestParam String mensagem) {
+		emailService.mensagem(nome, email, mensagem);
 		return "Email enviado";
 	}
 
@@ -92,8 +91,8 @@ public class PessoaController {
 
 	@DeleteMapping("/deletarLogico")
 	public void deletarLogico(@RequestParam String email, @RequestParam String password) {
-		
-		pessoaService.deletarLogico(email,password);
+
+		pessoaService.deletarLogico(email, password);
 		emailService.envioEmailDelete(email);
 	}
 
@@ -122,13 +121,18 @@ public class PessoaController {
 
 		// Gerando o token JWT a partir do e-mail do Usuario
 		// String token = jwtUtil.generateToken(pessoa.getEmail());
+		Set<String> strRoles = new HashSet<>();
+		
 		Set<String> usuarioMaiusculo = new HashSet<>();
 		if (pessoa.getRoles() != null) {
 			for (String str : pessoa.getRoles()) {
 				usuarioMaiusculo.add(str.toUpperCase());
+				strRoles = usuarioMaiusculo;
 			}
+		} else {
+			 strRoles = pessoa.getRoles();
 		}
-		Set<String> strRoles = usuarioMaiusculo;
+
 		Set<Role> roles = new HashSet<>();
 
 		if (strRoles == null) {
@@ -203,6 +207,9 @@ public class PessoaController {
 	// Login de usuario
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody LoginDTO body) {
+
+		System.out.println("o email é " + body.getEmail());
+
 		try {
 			// Criando o token que sera usado no processo de autenticacao
 			UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(
