@@ -91,7 +91,6 @@ public class PessoaController {
 
 	@DeleteMapping("/deletarLogico")
 	public void deletarLogico(@RequestParam String email, @RequestParam String password) {
-
 		pessoaService.deletarLogico(email, password);
 		emailService.envioEmailDelete(email);
 	}
@@ -185,6 +184,7 @@ public class PessoaController {
 		// Encriptando a senha usando o Bcrypt
 		String encodedPass = passwordEncoder.encode(pessoa.getPassword());
 		pessoaResumido.setPassword(encodedPass);
+//		pessoaResumido.setPassword(pessoa.getPassword());
 		pessoaRepository.save(pessoaResumido);
 
 //		List<Carro> carros = new ArrayList<>();
@@ -207,8 +207,6 @@ public class PessoaController {
 	// Login de usuario
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody LoginDTO body) {
-
-		System.out.println("o email é " + body.getEmail());
 
 		try {
 			// Criando o token que sera usado no processo de autenticacao

@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.api.trabalhoIndividual.dto.CarroRequisicaoDTO;
@@ -27,6 +29,10 @@ public class PessoaService {
 	PessoaRepository pessoaRepository;
 	@Autowired
 	CarroService carroService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private AuthenticationManager authManager;
 
 	public Pessoa parseDePessoaRequisicao(PessoaRequisicaoDTO obj) {
 		Pessoa pessoaNova = new Pessoa();
@@ -95,9 +101,8 @@ public class PessoaService {
 
 	public void deletarLogico(String email, String senha) {
 		Pessoa objUsuario = pessoaRepository.findByEmail(email).get();
-		System.out.println(objUsuario.getEmail());
 
-		if (objUsuario == null || !objUsuario.getPassword().equals(senha)) {
+		if (objUsuario == null || !passwordEncoder.matches(senha, objUsuario.getPassword())) {
 			throw new EntityNotFoundException("Email ou senha invalidos");
 		} else {
 			objUsuario.setAtivo(false);
